@@ -1,0 +1,93 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Cloud Computing Micro-Project",
+    "version": "1.0.0",
+    "description": "API documentation for Cloud Computing Micro-Project",
+    "contact": {
+      "name": "Bouchareb Mohamed El-Amin",
+      "email": "mbouchaerb@gmailcom"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/create_embedded_pdf": {
+      "post": {
+        "summary": "Embed multiple PDFs into a single PDF",
+        "description": "This endpoint allows embedding multiple PDFs into a single PDF file.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary",
+                      "description": "PDF file to be embedded"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "PDFs embedded successfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/extract_embedded_pdf": {
+      "post": {
+        "summary": "Extract embedded PDFs from a PDF",
+        "description": "This endpoint allows extracting embedded PDFs from a PDF file.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "embedded_json": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "JSON file containing embedded PDFs information"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/zip": {
+                "example": {
+                  "message": "PDFs extracted successfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
