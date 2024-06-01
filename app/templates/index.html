@@ -3,11 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Micro Project for Cloud Computing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .project-details, .personal-details {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #0366d6;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Flask Application</h1>
-    <p>This is the homepage of my application.</p>
+    <h1>Micro Project for Cloud Computing</h1>
+    <div class="personal-details">
+        <p><strong>Name:</strong> BOUCHAREB MOHAMED EL AMIN</p>
+        <p><strong>Group:</strong> MASTER 1 IDTW-G03</p>
+        <p><strong>ID:</strong> 181835064998</p>
+        <p><strong>Email:</strong> mbouchaerb@gmail.com</p>
+    </div>
     
+   
+
+    <div class="swagger-details">
+        <h2>Swagger UI</h2>
+        <p><a href="/swagger">To view the API documentation and test the endpoints, klick me </a>.</p>
+    </div>
+
+    <h2>Table of Contents</h2>
+    <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#how-to-clone-project">How to Clone Project</a></li>
+        <li><a href="#how-to-run-the-application">How to Run the Application</a>
+            <ul>
+                <li><a href="#on-host-machine">On Host Machine</a></li>
+                <li><a href="#using-docker">Using Docker</a></li>
+                <li><a href="#on-heroku">On Heroku</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2 id="introduction">Introduction</h2>
+    <p>Provide a brief introduction to your project.</p>
+
+    <h2 id="how-to-clone-project">How to Clone Project</h2>
+    <p>Instructions on how to clone the project repository.</p>
+    <pre><code>git clone https://github.com/BMA-FZB/MicroProjectCC.git</code></pre>
+
+    <h2 id="how-to-run-the-application">How to Run the Application</h2>
+    <p>Instructions on how to run the application using different methods.</p>
+
+    <h3 id="on-host-machine">On Host Machine</h3>
+    <ol>
+        <li>Install requirements:
+            <pre><code>pip install -r requirements.txt</code></pre>
+        </li>
+        <li>Run the application:
+            <pre><code>python run.py</code></pre>
+        </li>
+        <li>Usage:
+            <ul>
+                <li>Create Embedded PDF:
+                    <pre><code>curl -X POST -F "files=@/path/to/first_pdf.pdf" -F "files=@/path/to/second_pdf.pdf" http://localhost:5000/create_embedded_pdf -o create_embedded_pdf_output.json</code></pre>
+                </li>
+                <li>Extract Embedded PDF:
+                    <pre><code>curl -X POST -F "embedded_json=@/path/to/embedded.json" http://localhost:5000/extract_embedded_pdf -o files.zip</code></pre>
+                </li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3 id="using-docker">Using Docker</h3>
+    <ol>
+        <li>Build Docker image:
+            <pre><code>docker build -t my-flask-app .</code></pre>
+        </li>
+        <li>Run Docker container:
+            <pre><code>docker run -p 5000:5000 my-flask-app</code></pre>
+        </li>
+        <li>Usage:
+            <ul>
+                <li>Create Embedded PDF:
+                    <pre><code>curl -X POST -F "files=@/path/to/first_pdf.pdf" -F "files=@/path/to/second_pdf.pdf" http://localhost:5000/create_embedded_pdf -o create_embedded_pdf_output.json</code></pre>
+                </li>
+                <li>Extract Embedded PDF:
+                    <pre><code>curl -X POST -F "embedded_json=@/path/to/embedded.json" http://localhost:5000/extract_embedded_pdf -o files.zip</code></pre>
+                </li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3 id="on-heroku">On Heroku</h3>
+    <ol>
+        <li>Open the following URL:
+            <a href="https://microproject-d9656eae8280.herokuapp.com/">https://microproject-d9656eae8280.herokuapp.com/</a>
+        </li>
+        <li>Usage:
+            <ul>
+                <li>Create Embedded PDF:
+                    <pre><code>curl -X POST -F "files=@/path/to/first_pdf.pdf" -F "files=@/path/to/second_pdf.pdf" https://microproject-d9656eae8280.herokuapp.com/create_embedded_pdf -o create_embedded_pdf_output.json</code></pre>
+                </li>
+                <li>Extract Embedded PDF:
+                    <pre><code>curl -X POST -F "embedded_json=@/path/to/embedded.json" https://microproject-d9656eae8280.herokuapp.com/extract_embedded_pdf -o files.zip</code></pre>
+                </li>
+            </ul>
+        </li>
+    </ol>
 </body>
 </html>
