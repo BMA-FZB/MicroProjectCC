@@ -15,7 +15,7 @@ Provide a brief introduction to your project.
 Instructions on how to clone the project repository.
 
 ```bash
-git clone <repository_url>
+git clone https://github.com/BMA-FZB/MicroProjectCC.git
 ```
 
 ## How to Run the Application
