@@ -9,7 +9,7 @@
   - [On Heroku](#on-heroku)
 
 ## Introduction
-[Provide a brief introduction to your project.](https://github.com/BMA-FZB/MicroProjectCC.git)
+[go to github reposotory from here ](https://github.com/BMA-FZB/MicroProjectCC.git)
 
 ## How to Clone Project
 Instructions on how to clone the project repository.
