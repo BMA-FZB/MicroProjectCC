@@ -20,7 +20,7 @@ git clone https://github.com/BMA-FZB/MicroProjectCC.git
 
  ## How to Clone Project
  To clone the project repository, run:\n```bash
- git clone https://github.com/BMA-FZB/MicroProjectCC.git\n```\n
+ git clone https://github.com/BMA-FZB/MicroProjectCC.git```
 
   ## Testing Endpoints
 
@@ -32,11 +32,11 @@ git clone https://github.com/BMA-FZB/MicroProjectCC.git
       ```
     - Create Embedded PDF:
       ```bash
-      curl -X POST \"https://microproject-d9656eae8280.herokuapp.com/create_embedded_pdf\" -F \"pdf_Base_file=@file1.pdf\" -F \"pdf_files=@file2.pdf\" --output embedded_file.pdf
+      curl -X POST "https://microproject-d9656eae8280.herokuapp.com/create_embedded_pdf" -F "pdf_Base_file=@file1.pdf" -F "pdf_files=@file2.pdf" --output embedded_file.pdf
       ```
     - Extract Embedded PDF: 
       ```bash
-      curl -X POST \"https://microproject-d9656eae8280.herokuapp.com/extract_embedded_pdf\" -F \"embedded_file=@embedded_file.pdf\" --output files.zip
+      curl -X POST "https://microproject-d9656eae8280.herokuapp.com/extract_embedded_pdf" -F "embedded_file=@embedded_file.pdf" --output files.zip
       ```
 
  ### Using Local Host
@@ -57,11 +57,11 @@ git clone https://github.com/BMA-FZB/MicroProjectCC.git
       ```
     - Create Embedded PDF:
       ```bash
-      curl -X POST \"http://localhost:5000/create_embedded_pdf\" -F \"pdf_Base_file=@file1.pdf\" -F \"pdf_files=@file2.pdf\" --output embedded_file.pdf
+      curl -X POST "http://localhost:5000/create_embedded_pdf" -F "pdf_Base_file=@file1.pdf" -F "pdf_files=@file2.pdf" --output embedded_file.pdf
       ```
     - Extract Embedded PDF:
       ```bash
-      curl -X POST \"http://localhost:5000/extract_embedded_pdf\" -F \"embedded_file=@embedded_file.pdf\" --output files.zip"
+      curl -X POST "http://localhost:5000/extract_embedded_pdf" -F "embedded_file=@embedded_file.pdf" --output files.zip"
       ```\n
 
  #### Host Machine
@@ -80,9 +80,9 @@ git clone https://github.com/BMA-FZB/MicroProjectCC.git
       ```
     - Create Embedded PDF:
       ```bash
-      curl -X POST \"http://localhost:5000/create_embedded_pdf\" -F \"pdf_Base_file=@file1.pdf\" -F \"pdf_files=@file2.pdf\" --output embedded_file.pdf
+      curl -X POST "http://localhost:5000/create_embedded_pdf" -F "pdf_Base_file=@file1.pdf" -F "pdf_files=@file2.pdf" --output embedded_file.pdf
       ```
     - Extract Embedded PDF:
       ```bash
-      curl -X POST \"http://localhost:5000/extract_embedded_pdf\" -F \"embedded_file=@embedded_file.pdf\" --output files.zip
+      curl -X POST "http://localhost:5000/extract_embedded_pdf" -F "embedded_file=@embedded_file.pdf" --output files.zip
       ```
