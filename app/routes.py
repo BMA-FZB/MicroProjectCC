@@ -4,7 +4,7 @@ from flask import request, jsonify, Response
 from flask import render_template
 import zipfile
 import io
-
+#by amin bouchareb
 from PyPDF2 import PdfMerger, PdfReader, PdfWriter
 
 
@@ -29,7 +29,7 @@ class create_embedded_pdf(Resource):
         response.headers['Content-Disposition'] = 'attachment; filename=embedded_file.pdf'
         return response
 
-
+#by amin bouchareb
 class extract_embedded_pdf(Resource):
     def post(self):
         embedded_file = request.files['embedded_file']

@@ -1,66 +1,88 @@
-# Project Title
 
+# Project Title
 ## Table of Contents
 - [Introduction](#introduction)
 - [How to Clone Project](#how-to-clone-project)
-- [How to Run the Application](#how-to-run-the-application)
-  - [On Host Machine](#on-host-machine)
-  - [Using Docker](#using-docker)
-  - [On Heroku](#on-heroku)
+- [Testing Endpoints](#testing-endpoints)
+  - [Using Global Host (Heroku)](#using-global-host-heroku)
+  - [Using Local Host](#using-local-host)
+    - [Docker](#docker)
+    - [Host Machine](#host-machine)
 
 ## Introduction
-[go to github reposotory from here ](https://github.com/BMA-FZB/MicroProjectCC.git)
+[Go to GitHub repository from here](https://github.com/BMA-FZB/MicroProjectCC.git)
 
 ## How to Clone Project
-Instructions on how to clone the project repository.
-
+To clone the project repository, run:
 ```bash
 git clone https://github.com/BMA-FZB/MicroProjectCC.git
 ```
 
-## How to Run the Application
-Instructions on how to run the application using different methods.
+ ## How to Clone Project
+ To clone the project repository, run:\n```bash
+ git clone https://github.com/BMA-FZB/MicroProjectCC.git\n```\n
 
-### On Host Machine
-1. Install requirements:
-```bash
-pip install -r requirements.txt
-```
-2. Run the application:
-```bash
-python run.py
-```
-3. Usage:
-   - Create Embedded PDF:
-     ```bash
-     curl -X POST -F "files=@/path/to/first_pdf.pdf" -F "files=@/path/to/second_pdf.pdf" http://localhost:5000/create_embedded_pdf -o create_embedded_pdf_output.json
-     ```
-   - Extract Embedded PDF:
-     ```bash
-     curl -X POST -F "embedded_json=@/path/to/embedded.json" http://localhost:5000/extract_embedded_pdf -o files.zip
-     ```
+  ## Testing Endpoints
 
-### Using Docker
-1. Build Docker image:
-```bash
-docker build -t my-flask-app .
-```
-2. Run Docker container:
-```bash
-docker run -p 5000:5000 my-flask-app
-```
-3. Usage (same as host machine).
+ ### Using Global Host (Heroku)
+ 1. Test endpoints:
+    - Navigate to the pdfs directory:
+      ```bash
+      cd MicroProjectCC/pdfs
+      ```
+    - Create Embedded PDF:
+      ```bash
+      curl -X POST \"https://microproject-d9656eae8280.herokuapp.com/create_embedded_pdf\" -F \"pdf_Base_file=@file1.pdf\" -F \"pdf_files=@file2.pdf\" --output embedded_file.pdf
+      ```
+    - Extract Embedded PDF: 
+      ```bash
+      curl -X POST \"https://microproject-d9656eae8280.herokuapp.com/extract_embedded_pdf\" -F \"embedded_file=@embedded_file.pdf\" --output files.zip
+      ```
 
-### On Heroku
-1. Open the following URL:
-   - [https://microproject-d9656eae8280.herokuapp.com/](https://microproject-d9656eae8280.herokuapp.com/)
-2. Usage:
-   - Create Embedded PDF:
-     ```bash
-     curl -X POST -F "files=@/path/to/first_pdf.pdf" -F "files=@/path/to/second_pdf.pdf" https://microproject-d9656eae8280.herokuapp.com/create_embedded_pdf -o create_embedded_pdf_output.json
-     ```
-   - Extract Embedded PDF:
-     ```bash
-     curl -X POST -F "embedded_json=@/path/to/embedded.json" https://microproject-d9656eae8280.herokuapp.com/extract_embedded_pdf -o files.zip
-     ```
+ ### Using Local Host
 
+ #### Docker
+ 1. Build Docker image:
+ ```bash
+ docker build -t my-flask-app .
+ ```
+ 2. Run Docker container:
+ ```bash
+ docker run -p 5000:5000 my-flask-app
+ ```
+ 3. Test endpoints:
+    - Navigate to the pdfs directory:
+      ```bash
+      cd MicroProjectCC/pdfs
+      ```
+    - Create Embedded PDF:
+      ```bash
+      curl -X POST \"http://localhost:5000/create_embedded_pdf\" -F \"pdf_Base_file=@file1.pdf\" -F \"pdf_files=@file2.pdf\" --output embedded_file.pdf
+      ```
+    - Extract Embedded PDF:
+      ```bash
+      curl -X POST \"http://localhost:5000/extract_embedded_pdf\" -F \"embedded_file=@embedded_file.pdf\" --output files.zip"
+      ```\n
+
+ #### Host Machine
+ 1. Install requirements:
+ ```bash
+ pip install -r requirements.txt
+ ```
+ 2. Run the application:
+ ```bash
+ python run.py
+ ```
+ 3. Test endpoints:
+    - Navigate to the pdfs directory:
+      ```bash
+      cd MicroProjectCC/pdfs
+      ```
+    - Create Embedded PDF:
+      ```bash
+      curl -X POST \"http://localhost:5000/create_embedded_pdf\" -F \"pdf_Base_file=@file1.pdf\" -F \"pdf_files=@file2.pdf\" --output embedded_file.pdf
+      ```
+    - Extract Embedded PDF:
+      ```bash
+      curl -X POST \"http://localhost:5000/extract_embedded_pdf\" -F \"embedded_file=@embedded_file.pdf\" --output files.zip
+      ```
