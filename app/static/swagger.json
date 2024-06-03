@@ -1,54 +1,39 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
-    "title": "Cloud Computing Micro-Project",
-    "version": "1.0.0",
     "description": "API documentation for Cloud Computing Micro-Project",
-    "contact": {
-      "name": "Bouchareb Mohamed El-Amin",
-      "email": "mbouchaerb@gmailcom"
-    }
+    "version": "1.0.0",
+    "title": "Cloud Computing Micro-Project"
   },
-  "servers": [
+  "host": "localhost:5000",
+  "basePath": "/",
+  "tags": [
     {
-      "url": "http://localhost:5000",
-      "description": "Local development server"
+      "name": "PDF Operations",
+      "description": "Endpoints for PDF operations"
     }
   ],
   "paths": {
     "/create_embedded_pdf": {
       "post": {
-        "summary": "Embed multiple PDFs into a single PDF",
-        "description": "This endpoint allows embedding multiple PDFs into a single PDF file.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "files": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "format": "binary",
-                      "description": "PDF file to be embedded"
-                    }
-                  }
-                }
-              }
-            }
+        "tags": ["PDF Operations"],
+        "summary": "Create embedded PDF",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "files",
+            "type": "file",
+            "required": true,
+            "description": "PDF files to embed"
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "PDFs embedded successfully"
-                }
-              }
+            "description": "Successful response",
+            "schema": {
+              "$ref": "#/definitions/EmbeddedPDFResponse"
             }
           }
         }
@@ -56,36 +41,87 @@
     },
     "/extract_embedded_pdf": {
       "post": {
-        "summary": "Extract embedded PDFs from a PDF",
-        "description": "This endpoint allows extracting embedded PDFs from a PDF file.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "embedded_json": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "JSON file containing embedded PDFs information"
-                  }
-                }
-              }
-            }
+        "tags": ["PDF Operations"],
+        "summary": "Extract embedded PDF",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/zip"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "embedded_json",
+            "type": "file",
+            "required": true,
+            "description": "JSON file with embedded PDF data"
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "Success",
-            "content": {
-              "application/zip": {
-                "example": {
-                  "message": "PDFs extracted successfully"
-                }
-              }
-            }
+            "description": "Successful response"
           }
+        }
+      }
+    },
+    "/endpoint1": {
+      "post": {
+        "tags": ["PDF Operations"],
+        "summary": "Embed PDFs",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/pdf"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "pdf_Base_file",
+            "type": "file",
+            "required": true,
+            "description": "Base PDF file"
+          },
+          {
+            "in": "formData",
+            "name": "pdf_files",
+            "type": "file",
+            "required": false,
+            "description": "Additional PDF files to embed"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/endpoint2": {
+      "post": {
+        "tags": ["PDF Operations"],
+        "summary": "Extract PDFs from embedded file",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/zip"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "embedded_file",
+            "type": "file",
+            "required": true,
+            "description": "Embedded PDF file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "EmbeddedPDFResponse": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
         }
       }
     }

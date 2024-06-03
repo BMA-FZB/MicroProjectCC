@@ -11,10 +11,11 @@ def create_app():
 
 
 
-    from app.routes import create_embedded_pdf, extract_embedded_pdf
+    from app.routes import create_embedded_pdf, extract_embedded_pdf#,EmbedPDFs, ExtractPDFs#,CreateEmbeddedPDF
 
     api.add_resource(create_embedded_pdf, '/create_embedded_pdf')
     api.add_resource(extract_embedded_pdf, '/extract_embedded_pdf')
+
 
 
     @app.route('/')

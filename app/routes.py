@@ -2,67 +2,56 @@
 from flask_restful import Resource
 from flask import request, jsonify, Response
 from flask import render_template
-import base64
 import zipfile
 import io
-import json
+
+from PyPDF2 import PdfMerger, PdfReader, PdfWriter
 
 
-
+        
 class create_embedded_pdf(Resource):
     def post(self):
-        files = request.files.getlist('files')
+        base_pdf_file = request.files['pdf_Base_file']
+        pdf_files = request.files.getlist('pdf_files')
 
-        base64_pdfs = []
+        merger = PdfMerger()
+        merger.append(base_pdf_file)
 
-        for file in files:
-            pdf_content = file.read()
-            base64_content = base64.b64encode(pdf_content)
-            base64_string = base64_content.decode('utf-8')
-            
+        for pdf_file in pdf_files:
+            merger.append(pdf_file)
 
-            base64_pdfs.append({
-                "title": file.filename,
-                "content": base64_string
-            })
+        output = io.BytesIO()
+        merger.write(output)
+        merger.close()
+        output.seek(0)
 
+        response = Response(output, content_type='application/pdf')
+        response.headers['Content-Disposition'] = 'attachment; filename=embedded_file.pdf'
+        return response
 
-        data = {'base64_pdfs': base64_pdfs}
-
-
-        return jsonify(data)
-    
 
 class extract_embedded_pdf(Resource):
     def post(self):
+        embedded_file = request.files['embedded_file']
 
-        json_data = request.files['embedded_json'].read()
-
-
-        data = json.loads(json_data)
-
-
+        reader = PdfReader(embedded_file)
         zip_buffer = io.BytesIO()
 
-  
         with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
-
-            for pdf_data in data['base64_pdfs']:
-
-                decoded_content = base64.b64decode(pdf_data['content'])
-
-
-                zip_file.writestr(pdf_data['title'], decoded_content)
-
+            for i, page in enumerate(reader.pages):
+                writer = PdfWriter()
+                writer.add_page(page)
+                pdf_output = io.BytesIO()
+                writer.write(pdf_output)
+                pdf_output.seek(0)
+                zip_file.writestr(f"page_{i+1}.pdf", pdf_output.read())
 
         zip_buffer.seek(0)
-
-
         return Response(
             zip_buffer,
             mimetype='application/zip',
-            headers={"Content-Disposition": "attachment;filename=files.zip"}
+            headers={"Content-Disposition": "attachment; filename=files.zip"}
         )
-    
+
 
 
