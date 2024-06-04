@@ -27,7 +27,7 @@
         "consumes": ["multipart/form-data"],
         "produces": ["application/pdf"],
         "parameters": [
-          {
+          {   
             "in": "formData",
             "name": "pdf_Base_file",
             "type": "file",
