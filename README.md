@@ -1,5 +1,5 @@
 
-# Project Title
+# Cloud Computing Micro project
 ## Table of Contents
 - [Introduction](#introduction)
 - [How to Clone Project](#how-to-clone-project)
@@ -11,6 +11,8 @@
 
 ## Introduction
 [Go to GitHub repository from here](https://github.com/BMA-FZB/MicroProjectCC.git)
+
+[Go to global hosted web Site ](https://microproject-d9656eae8280.herokuapp.com/)
 
 ## How to Clone Project
 To clone the project repository, run:
