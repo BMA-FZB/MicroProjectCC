@@ -62,11 +62,10 @@ git clone https://github.com/BMA-FZB/MicroProjectCC.git
     - Extract Embedded PDF:
       ```bash
       curl -X POST "http://localhost:5000/extract_embedded_pdf" -F "embedded_file=@embedded_file.pdf" --output files.zip"
-<<<<<<< HEAD
-      ```\n
-=======
       ```
->>>>>>> origin/main
+
+
+
 
  #### Host Machine
  1. Install requirements:
