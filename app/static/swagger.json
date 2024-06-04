@@ -37,7 +37,11 @@
           {
             "in": "formData",
             "name": "pdf_files",
-            "type": "file",
+            "type": "array",
+            "collectionFormat": "multi",
+            "items": {
+              "type": "file"
+            },
             "required": false,
             "description": "Additional PDF files to embed"
           }
